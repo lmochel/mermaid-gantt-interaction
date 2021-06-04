@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Mermaid Quick Test Page</title>
+  <link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgo=">
+  <style>
+    div.mermaid {
+      /* font-family: 'trebuchet ms', verdana, arial; */
+      font-family: 'Courier New', Courier, monospace !important;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="mermaid">
+    gantt
+      title         Gantt diagramm with interaction
+      dateFormat    YYYY-MM-DD
+
+      section Clickable
+      Visit mermaidjs           :active, cl1, 2014-01-07, 3d
+      Print arguments         :cl2, after cl1, 3d
+      Print task              :cl3, after cl2, 3d
+
+      click cl1 href "https://mermaidjs.github.io/"
+      click cl2 call printArguments("test1", "test2", test3)
+      click cl3 call printTask()
+  </div>
+
+  <hr />
+
+  <script src="./mermaid.js"></script>
+  <script>
+    var printArguments = function(arg1, arg2, arg3) {
+      alert('printArguments called with arguments: ' + arg1 + ', ' + arg2 + ', ' + arg3);
+    }
+    var printTask = function(taskId) {
+      alert('taskId: ' + taskId);
+    }
+    var config = {
+      startOnLoad:true,
+      securityLevel:'loose',
+    };
+    mermaid.initialize(config);
+  </script>
+</body>
+
+</html>
